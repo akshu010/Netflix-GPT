@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
-  const getNowPlayinhMovies = async () => {
+  const getNowPlayingMovies = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
       API_OPTIONS
@@ -14,9 +14,8 @@ const useNowPlayingMovies = () => {
     dispatch(addNowPlayingMovies(json.results));
   };
   useEffect(() => {
-    getNowPlayinhMovies();
+    getNowPlayingMovies();
     // eslint-disable-next-line
   }, []);
 };
-
 export default useNowPlayingMovies;

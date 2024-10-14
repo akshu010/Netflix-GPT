@@ -39,7 +39,7 @@ function Header() {
     // eslint-disable-next-line
   }, []);
   return (
-    <div className="absolute top-0 left-0  z-20 w-screen flex justify-between bg-black bg-opacity-20 ">
+    <div className="absolute top-0 left-0  z-20 w-full flex justify-between bg-black bg-opacity-20 ">
       <img className="w-52 " src={LOGO} alt="logo" />
       {user && (
         <div className="flex gap-3">
