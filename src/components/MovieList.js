@@ -2,7 +2,7 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-  console.log(movies);
+  // console.log(movies);
   return (
     <div className="">
       <h1 className="text-3xl py-5 px-5 text-white">{title}</h1>
@@ -13,7 +13,7 @@ const MovieList = ({ title, movies }) => {
               <MovieCard key={movie.id} posterPath={movie.poster_path} />
             ))
           ) : (
-            <p>No movies available</p>
+            <p className="text-white">No movies available</p>
           )}
         </div>
       </div>
