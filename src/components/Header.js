@@ -43,7 +43,7 @@ function Header() {
     // eslint-disable-next-line
   }, []);
   const handleGptSearchClick = () => {
-    dispatch(toggleGptSearchView());
+    dispatch(toggleGptSearchView());  
   };
   const handleLanguageChange = (e) => {
     dispatch(changeLanguage(e.target.value));
