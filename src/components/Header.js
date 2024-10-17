@@ -14,6 +14,7 @@ function Header() {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {})
@@ -21,6 +22,7 @@ function Header() {
         navigate("/error");
       });
   };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -42,21 +44,24 @@ function Header() {
     return () => unsubscribe();
     // eslint-disable-next-line
   }, []);
+
   const handleGptSearchClick = () => {
-    dispatch(toggleGptSearchView());  
+    dispatch(toggleGptSearchView());
   };
+
   const handleLanguageChange = (e) => {
     dispatch(changeLanguage(e.target.value));
   };
+
   return (
-    <div className="absolute top-0 left-0  z-20 w-full flex justify-between bg-black bg-opacity-20 ">
-      <img className="w-52 " src={LOGO} alt="logo" />
+    <div className="fixed top-0 left-0 z-20 w-full flex items-center justify-between bg-black bg-opacity-90 px-4 py-2 md:px-8 md:py-4">
+      <img className="w-24 md:w-40" src={LOGO} alt="logo" />
       {user && (
-        <div className="flex gap-3">
+        <div className="flex items-center gap-4">
           {showGptSearch && (
             <select
               onChange={handleLanguageChange}
-              className="border border-white h-10 mt-7 m-2 p-2 cursor-pointer  text-white rounded-md w-28 bg-transparent"
+              className="border border-white h-8 md:h-10 px-2 text-white rounded-md bg-transparent cursor-pointer hover:bg-white hover:text-black transition duration-300 ease-in-out"
             >
               {SUPPORTED_LANGUAGE.map((lang) => (
                 <option
@@ -71,18 +76,18 @@ function Header() {
           )}
           <button
             onClick={handleGptSearchClick}
-            className="border border-white h-10 mt-7 m-2 p-2 cursor-pointer  text-white rounded-md w-28 bg-transparent"
+            className="border border-white h-8 md:h-10 px-2 text-white rounded-md bg-transparent cursor-pointer hover:bg-white hover:text-black transition duration-300 ease-in-out"
           >
             {showGptSearch ? "Home Page" : "GPT Search"}
           </button>
           <img
-            className="hidden md:block w-12 h-12 mt-6 rounded-3xl cursor-pointer"
+            className="hidden md:block w-10 h-10 md:w-12 md:h-12 rounded-full cursor-pointer"
             alt="usericon"
             src={user?.photoURL}
           />
           <button
             onClick={handleSignOut}
-            className="border border-white h-10 mt-7 m-2 p-2 cursor-pointer  text-white rounded-md w-28 bg-transparent"
+            className="border border-white h-8 md:h-10 px-2 text-white rounded-md bg-transparent cursor-pointer hover:bg-white hover:text-black transition duration-300 ease-in-out"
           >
             Sign Out
           </button>

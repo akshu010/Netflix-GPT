@@ -9,6 +9,7 @@ const GptSearchBar = () => {
   const dispatch = useDispatch();
   const langKey = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
+
   const searchMovieTMDB = async (movie) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
@@ -23,6 +24,7 @@ const GptSearchBar = () => {
       return {};
     }
   };
+
   const handleGptSearchClick = async () => {
     const gptQuary =
       "Act as a Movie Recommendation system and suggest some movies for the query: " +
@@ -55,20 +57,21 @@ const GptSearchBar = () => {
       })
     );
   };
+
   return (
-    <div className="flex justify-center absolute top-10 left-[30%]">
+    <div className="flex justify-center absolute top-10 left-1/2 transform -translate-x-1/2">
       <form onSubmit={(e) => e.preventDefault()} className="py-32 ">
         <input
           ref={searchText}
-          className="border border-black h-10 w-[450px] px-2 text-black rounded-lg  "
+          className="border border-white h-10 w-[300px] sm:w-[400px] px-2 text-white bg-transparent rounded-lg"
           type="text"
           placeholder={lang[langKey].gptSearchPlaceholder}
         />
         <button
           onClick={handleGptSearchClick}
-          className=" border border-white h-10 mt-7 m-2 p-2 cursor-pointer  text-white w-28 bg-transparent rounded-xl"
+          className="border border-white text-white hover:bg-white hover:text-black transition-colors duration-300 rounded-lg px-6 py-2 mt-7 ml-2"
         >
-          {lang[langKey].search} <i class="ri-search-line"></i>
+          {lang[langKey].search} <i className="ri-search-line"></i>
         </button>
       </form>
     </div>
